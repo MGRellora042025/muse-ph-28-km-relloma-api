@@ -14,7 +14,7 @@ app.get("/", (req, res) => res.send("The app is up and running"));
 app.get("/projects", (req, res) => {
     const { projectName } = req.query;
 
-    if (projectName === undefined)
+    if (!projectName)
         return res.status(200).json(projects)
 
     const projectList = projects.filter((project) => project.projectName === projectName);
@@ -36,6 +36,9 @@ app.post("/projects", (req, res) => {
     const newProject = { projectName, description, startDate, members };
     projects.push(newProject);
 
+    console.log("New project created..");
+    console.log(newProject);
+
     res.status(201).json(newProject);
 });
 
@@ -43,10 +46,11 @@ app.post("/projects", (req, res) => {
 app.get("/employees", (req, res) => {
     const { department } = req.query;
 
-    if (department === undefined)
-        return res.status(200).json(employees.map(employee => employee.name));
+    console.log(department);
+    if (!department)
+        return res.status(200).json(employees.map(({name, id}) => ({name, id})));
 
-    const departmentEmployees = employees.filter((employee) => employee.department == department).map(employee => employee.name);
+    const departmentEmployees = employees.filter((employee) => employee.department == department).map(({name, id}) => ({name, id}));
 
     if (departmentEmployees.length < 1)
         return res.status(404).json("No employees under this department found.");
