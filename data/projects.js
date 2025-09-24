@@ -1,4 +1,4 @@
-[
+const projects = [
   {
     "projectName": "Website Redesign",
     "description": "A complete redesign of the company website to improve user experience and SEO.",
@@ -36,3 +36,5 @@
     "members": [11, 18, 13]
   }
 ]
+
+export default projects;

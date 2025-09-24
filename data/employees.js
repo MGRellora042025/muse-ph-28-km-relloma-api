@@ -1,4 +1,4 @@
-[
+const employees = [
   {
     "id": 1,
     "name": "Alice Johnson",
@@ -180,3 +180,5 @@
     "imgUrl": "https://randomuser.me/api/portraits/women/40.jpg"
   }
 ]
+
+export default employees;
